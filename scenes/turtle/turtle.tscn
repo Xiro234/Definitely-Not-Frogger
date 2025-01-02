@@ -1,0 +1,105 @@
+[gd_scene load_steps=13 format=3 uid="uid://dcuot58yupqv8"]
+
+[ext_resource type="Script" path="res://scenes/turtle/turtle.gd" id="1_eq875"]
+[ext_resource type="Texture2D" uid="uid://d00oou7scxele" path="res://scenes/turtle/turtle_sprites.png" id="2_cg08n"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4fmld"]
+size = Vector2(18, 18)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xbfup"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eegci"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_txb70"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xqa4m"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8417x"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l555k"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12ji1"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kocbt"]
+atlas = ExtResource("2_cg08n")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mrt52"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": null
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbfup")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eegci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_txb70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xqa4m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8417x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eegci")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xbfup")
+}],
+"loop": true,
+"name": &"diver",
+"speed": 4.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l555k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12ji1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kocbt")
+}],
+"loop": true,
+"name": &"swim",
+"speed": 4.0
+}]
+
+[node name="Turtle" type="Area2D" groups=["Raft", "Turtle"]]
+script = ExtResource("1_eq875")
+diveFrequency = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4fmld")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["Turtle"]]
+sprite_frames = SubResource("SpriteFrames_mrt52")
+animation = &"diver"
+autoplay = "swim"
+
+[node name="UnderwaterTimer" type="Timer" parent="."]
+wait_time = 0.25
+one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[connection signal="timeout" from="UnderwaterTimer" to="." method="_on_underwater_timer_timeout"]

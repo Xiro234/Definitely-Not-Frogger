@@ -1,0 +1,274 @@
+[gd_scene load_steps=11 format=3 uid="uid://bt8n45q17ecme"]
+
+[ext_resource type="Script" path="res://scenes/main/main.gd" id="1_lgqgl"]
+[ext_resource type="Texture2D" uid="uid://dp743g10h5srt" path="res://scenes/main/background.tres" id="1_n7njk"]
+[ext_resource type="PackedScene" uid="uid://bytpdp6lv01rr" path="res://scenes/frog/frog.tscn" id="2_5bcn7"]
+[ext_resource type="Script" path="res://scenes/main/spawner.gd" id="2_qndsy"]
+[ext_resource type="PackedScene" uid="uid://ce46tltqy5007" path="res://scenes/vehicle/vehicle.tscn" id="3_85egr"]
+[ext_resource type="Texture2D" uid="uid://iejw5k2wa2e6" path="res://assets/Grass.png" id="3_p4w08"]
+[ext_resource type="PackedScene" uid="uid://dcuot58yupqv8" path="res://scenes/turtle/turtle.tscn" id="5_emh57"]
+[ext_resource type="PackedScene" uid="uid://ii86n4vkvg1q" path="res://scenes/log/log.tscn" id="6_ba2ss"]
+[ext_resource type="Texture2D" uid="uid://b1w7g5hg01vl2" path="res://assets/goal.png" id="8_heaol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yhrjx"]
+size = Vector2(224, 83)
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, -16)
+script = ExtResource("1_lgqgl")
+
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(8, 8)
+texture = ExtResource("1_n7njk")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="Vehicle Spawns" type="Node" parent="."]
+
+[node name="Vehicle Spawn 1" type="Marker2D" parent="Vehicle Spawns"]
+position = Vector2(136, 72)
+script = ExtResource("2_qndsy")
+entity = ExtResource("3_85egr")
+entitySpeed = 80
+timeBetweenGroups = 4.0
+
+[node name="Vehicle Spawn 2" type="Marker2D" parent="Vehicle Spawns"]
+position = Vector2(-136, 56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("3_85egr")
+spriteNumber = 4
+entitySpeed = 50
+timeBetweenGroups = 2.0
+distanceBetweenEntities = 32
+groupCount = 2
+
+[node name="Vehicle Spawn 3" type="Marker2D" parent="Vehicle Spawns"]
+position = Vector2(136, 40)
+script = ExtResource("2_qndsy")
+entity = ExtResource("3_85egr")
+spriteNumber = 2
+entitySpeed = 175
+timeBetweenGroups = 2.0
+groupCount = 1
+
+[node name="Vehicle Spawn 4" type="Marker2D" parent="Vehicle Spawns"]
+position = Vector2(-136, 24)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("3_85egr")
+spriteNumber = 3
+entitySpeed = 150
+timeBetweenGroups = 2.5
+distanceBetweenEntities = 70
+
+[node name="Vehicle Spawn 5" type="Marker2D" parent="Vehicle Spawns"]
+position = Vector2(136, 8)
+script = ExtResource("2_qndsy")
+entity = ExtResource("3_85egr")
+spriteNumber = 5
+entitySpeed = 60
+timeBetweenGroups = 2.0
+groupCount = 1
+
+[node name="Vehicle Spawn 6" type="Marker2D" parent="Vehicle Spawns"]
+position = Vector2(152, 8)
+script = ExtResource("2_qndsy")
+entity = ExtResource("3_85egr")
+spriteNumber = 6
+entitySpeed = 60
+timeBetweenGroups = 2.0
+groupCount = 1
+
+[node name="Water Spawns" type="Node" parent="."]
+
+[node name="Turtle Spawn 1" type="Marker2D" parent="Water Spawns"]
+position = Vector2(136, -24)
+script = ExtResource("2_qndsy")
+entity = ExtResource("5_emh57")
+entitySpeed = 55
+timeBetweenGroups = 1.5
+groupCount = 1
+
+[node name="Turtle Spawn 2" type="Marker2D" parent="Water Spawns"]
+position = Vector2(152, -24)
+script = ExtResource("2_qndsy")
+entity = ExtResource("5_emh57")
+entitySpeed = 55
+timeBetweenGroups = 1.5
+groupCount = 1
+
+[node name="Turtle Spawn 3" type="Marker2D" parent="Water Spawns"]
+position = Vector2(168, -24)
+script = ExtResource("2_qndsy")
+entity = ExtResource("5_emh57")
+entitySpeed = 55
+timeBetweenGroups = 1.5
+groupCount = 1
+
+[node name="Turtle Spawn 4" type="Marker2D" parent="Water Spawns"]
+position = Vector2(136, -72)
+script = ExtResource("2_qndsy")
+entity = ExtResource("5_emh57")
+entitySpeed = 70
+timeBetweenGroups = 0.75
+groupCount = 1
+
+[node name="Turtle Spawn 5" type="Marker2D" parent="Water Spawns"]
+position = Vector2(152, -72)
+script = ExtResource("2_qndsy")
+entity = ExtResource("5_emh57")
+entitySpeed = 70
+timeBetweenGroups = 0.75
+groupCount = 1
+
+[node name="Log Spawn 1" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-136, -40)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 3
+entitySpeed = 20
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 2" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-152, -40)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 20
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 3" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-168, -40)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+entitySpeed = 20
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 10" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-136, -88)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 3
+entitySpeed = 30
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 11" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-152, -88)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 30
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 12" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-168, -88)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 30
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 13" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-184, -88)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+entitySpeed = 30
+timeBetweenGroups = 3.0
+groupCount = 1
+
+[node name="Log Spawn 4" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-136, -56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 3
+entitySpeed = 50
+groupCount = 1
+
+[node name="Log Spawn 5" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-152, -56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 50
+groupCount = 1
+
+[node name="Log Spawn 6" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-168, -56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 50
+groupCount = 1
+
+[node name="Log Spawn 7" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-184, -56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 50
+groupCount = 1
+
+[node name="Log Spawn 8" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-200, -56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+spriteNumber = 2
+entitySpeed = 50
+groupCount = 1
+
+[node name="Log Spawn 9" type="Marker2D" parent="Water Spawns"]
+position = Vector2(-216, -56)
+script = ExtResource("2_qndsy")
+direction = Vector2(1, 0)
+entity = ExtResource("6_ba2ss")
+entitySpeed = 50
+groupCount = 1
+
+[node name="Water" type="Area2D" parent="." groups=["Water"]]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
+position = Vector2(0, -43.5)
+shape = SubResource("RectangleShape2D_yhrjx")
+
+[node name="Grass 1" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 8)
+texture = ExtResource("3_p4w08")
+region_enabled = true
+region_rect = Rect2(0, 0, 224, 16)
+
+[node name="Grass 2" type="Sprite2D" parent="."]
+texture_repeat = 2
+position = Vector2(0, 105)
+texture = ExtResource("3_p4w08")
+region_enabled = true
+region_rect = Rect2(0, 0, 224, 16)
+
+[node name="GoalSprite" type="Sprite2D" parent="."]
+position = Vector2(0, -92)
+texture = ExtResource("8_heaol")
+
+[node name="Frog" parent="." instance=ExtResource("2_5bcn7")]
+z_index = 1
+position = Vector2(8, 105)
+collision_mask = 31

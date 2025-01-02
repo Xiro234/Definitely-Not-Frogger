@@ -1,0 +1,37 @@
+[gd_scene load_steps=7 format=3 uid="uid://bytpdp6lv01rr"]
+
+[ext_resource type="SpriteFrames" uid="uid://vubjl1yburia" path="res://scenes/frog/frog_animation.tres" id="1_gl1c8"]
+[ext_resource type="Script" path="res://scenes/frog/frog.gd" id="1_nrnyl"]
+[ext_resource type="AudioStream" uid="uid://dtiwr2ejm86dm" path="res://assets/sounds/hop.ogg" id="3_ovj8r"]
+[ext_resource type="AudioStream" uid="uid://dw2ei46kyynis" path="res://assets/sounds/dieWater.ogg" id="4_gekvb"]
+[ext_resource type="AudioStream" uid="uid://dde3or4ul2qdi" path="res://assets/sounds/dieRoad.ogg" id="5_hl5i3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qb78v"]
+size = Vector2(8, 8)
+
+[node name="Frog" type="Area2D"]
+script = ExtResource("1_nrnyl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("1_gl1c8")
+animation = &"sink"
+frame = 4
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qb78v")
+
+[node name="HopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ovj8r")
+volume_db = -10.0
+
+[node name="SinkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_gekvb")
+volume_db = -10.0
+
+[node name="SplatSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_hl5i3")
+volume_db = -10.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

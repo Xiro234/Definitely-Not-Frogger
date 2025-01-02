@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://ce46tltqy5007"]
+
+[ext_resource type="Script" path="res://scenes/vehicle/vehicle.gd" id="1_nmcw3"]
+[ext_resource type="Texture2D" uid="uid://dbyb8m5tngjiv" path="res://scenes/vehicle/sprites/vehicle1.png" id="2_v2228"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bwcnc"]
+size = Vector2(16, 16)
+
+[node name="Vehicle" type="Area2D" groups=["Numbered Sprite", "Vehicle"]]
+collision_layer = 2
+script = ExtResource("1_nmcw3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_v2228")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_bwcnc")
+debug_color = Color(3.56168e-06, 0.590514, 0.751573, 0.42)
