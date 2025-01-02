@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bt8n45q17ecme"]
+[gd_scene load_steps=12 format=3 uid="uid://bt8n45q17ecme"]
 
 [ext_resource type="Script" path="res://scenes/main/main.gd" id="1_lgqgl"]
 [ext_resource type="Texture2D" uid="uid://dp743g10h5srt" path="res://scenes/main/background.tres" id="1_n7njk"]
@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://dcuot58yupqv8" path="res://scenes/turtle/turtle.tscn" id="5_emh57"]
 [ext_resource type="PackedScene" uid="uid://ii86n4vkvg1q" path="res://scenes/log/log.tscn" id="6_ba2ss"]
 [ext_resource type="Texture2D" uid="uid://b1w7g5hg01vl2" path="res://assets/goal.png" id="8_heaol"]
+[ext_resource type="PackedScene" uid="uid://cjslefpco66fa" path="res://scenes/goal/goal.tscn" id="10_6tjha"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yhrjx"]
-size = Vector2(224, 83)
+size = Vector2(224, 79)
 
 [node name="Main" type="Node2D"]
 position = Vector2(0, -16)
@@ -243,11 +244,13 @@ entity = ExtResource("6_ba2ss")
 entitySpeed = 50
 groupCount = 1
 
+[node name="Node" type="Node" parent="."]
+
 [node name="Water" type="Area2D" parent="." groups=["Water"]]
 collision_layer = 16
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Water"]
-position = Vector2(0, -43.5)
+position = Vector2(0, -41.5)
 shape = SubResource("RectangleShape2D_yhrjx")
 
 [node name="Grass 1" type="Sprite2D" parent="."]
@@ -265,10 +268,35 @@ region_enabled = true
 region_rect = Rect2(0, 0, 224, 16)
 
 [node name="GoalSprite" type="Sprite2D" parent="."]
-position = Vector2(0, -92)
+position = Vector2(0, -91)
 texture = ExtResource("8_heaol")
 
 [node name="Frog" parent="." instance=ExtResource("2_5bcn7")]
 z_index = 1
 position = Vector2(8, 105)
 collision_mask = 31
+
+[node name="Bounds" type="Area2D" parent="." groups=["Bounds"]]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Bounds"]
+polygon = PackedVector2Array(-112, -81, -106, -81, -106, -97, -86, -97, -86, -81, -58, -81, -58, -98, -38, -98, -38, -81, -10, -81, -10, -98, 10, -98, 10, -81, 38, -81, 38, -98, 58, -98, 58, -81, 86, -81, 86, -98, 106, -98, 106, -81, 112, -81, 112, 128, -112, 128)
+
+[node name="Goals" type="Node" parent="."]
+
+[node name="Goal" parent="Goals" instance=ExtResource("10_6tjha")]
+position = Vector2(-96, -103)
+
+[node name="Goal2" parent="Goals" instance=ExtResource("10_6tjha")]
+position = Vector2(-48, -103)
+
+[node name="Goal3" parent="Goals" instance=ExtResource("10_6tjha")]
+position = Vector2(0, -103)
+
+[node name="Goal4" parent="Goals" instance=ExtResource("10_6tjha")]
+position = Vector2(48, -103)
+
+[node name="Goal5" parent="Goals" instance=ExtResource("10_6tjha")]
+position = Vector2(96, -103)
+
+[node name="FrogSpawn" type="Marker2D" parent="."]
+position = Vector2(8, 105)

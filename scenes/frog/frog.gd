@@ -4,6 +4,9 @@ extends Area2D
 @onready var hopSound: AudioStreamPlayer = $HopSound
 @onready var splatSound: AudioStreamPlayer = $SplatSound
 @onready var sinkSound: AudioStreamPlayer = $SinkSound
+@onready var dieTimer: Timer = $DieTimer
+@onready var resetTimer: Timer = $ResetTimer
+
 const POS_INCREMENT = 16
 
 var dead = false
@@ -21,6 +24,10 @@ func sink() -> void:
 
 func die() -> void:
 	dead = true
+	dieTimer.start()
+
+func reset() -> void:
+	resetTimer.start()
 
 func _ready() -> void:
 	animatedSprite.animation = "hop_up"
@@ -96,3 +103,22 @@ func _on_area_entered(area: Area2D) -> void:
 
 	if(area.is_in_group("Vehicle")):
 		run_over()
+	
+	if(area.is_in_group("Goal")):
+		Signals.respawn.emit()
+
+func _on_area_exited(area: Area2D) -> void:
+	if(dead):
+		return
+	
+	if(area.is_in_group("Bounds")):
+		run_over()
+
+func _on_die_timer_timeout() -> void:
+	Signals.respawn.emit()
+
+func _on_reset_timer_timeout() -> void:
+	animatedSprite.animation = "hop_up"
+	animatedSprite.frame = 1
+	dead = false
+	moving = false

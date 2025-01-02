@@ -1,3 +1,3 @@
 extends Node
 
-signal frog_runover()
+signal respawn()
